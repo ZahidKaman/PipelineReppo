@@ -1,0 +1,49 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+stages:
+  - stage: A
+    displayName: starting point
+    jobs:
+      -  job: job1
+         steps:
+           - script: echo hell,world 1!
+             displayName: 'run a online script 1'
+
+  - stage: B
+    displayName: Stage B
+    dependsOn: A
+    jobs:
+      -  job: job1
+         steps:
+           - script: echo hell,world 1!
+             displayName: 'run a online script 1'
+    
+  - stage: C
+    displayName: Stage C
+    dependsOn: A
+    jobs:
+      -  job: job1
+         steps:
+           - script: echo hell,world 1!
+             displayName: 'run a online script 1'
+            
+  - stage: D
+    displayName: Stage D
+    dependsOn:
+      - B
+      - C
+    jobs:
+      -  job: job1
+         steps:
+           - script: echo hell,world 1!
+             displayName: 'run a online script 1'
+
+  
